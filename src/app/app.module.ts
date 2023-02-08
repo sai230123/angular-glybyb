@@ -11,21 +11,12 @@ import { ProductListComponent } from './product-list/product-list.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-    ])
+    RouterModule.forRoot([{ path: '', component: ProductListComponent }]),
   ],
-  declarations: [
-    AppComponent,
-    TopBarComponent,
-    ProductListComponent
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+  declarations: [AppComponent, TopBarComponent, ProductListComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}
 
 /*
 Copyright Google LLC. All Rights Reserved.
