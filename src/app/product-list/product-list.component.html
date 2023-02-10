@@ -1,7 +1,7 @@
 <h2>Customers</h2>
 
-<div *ngFor="let customer of customers">
-  {{ customer.customer_id }}
+<div>
+  <!-- {{customer. customer_id}} -->
 
   <table id="customers">
     <tr>
@@ -13,18 +13,12 @@
       <th>ACTIVE</th>
       <th>OFFER</th>
     </tr>
-    <tr>
+    <tr *ngFor="let customer of customers">
       <td>{{ customer.store_id }}</td>
       <td>{{ customer.first_name }}</td>
       <td>{{ customer.last_name }}</td>
       <td>{{ customer.email }}</td>
       <td>{{ customer.address_id }}</td>
-      <td>{{ customer.active }}</td>
     </tr>
-    <!-- 
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://angular.io/license
--->
   </table>
 </div>
