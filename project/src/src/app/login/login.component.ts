@@ -39,12 +39,12 @@ export class LoginComponent implements OnInit {
         this.toastService.show('I am a success toast');
         this.router.navigate(['/home' , {}]);
       }else {
-        this.toastService.show('I am a success toast', {status : 'error'});
+        this.toastService.show('I am a error toast', {status : 'error'});
       }
       
     }, error => {
       this.showSpinner = false;
-      console.log(error);
+      this.toastService.show('I am a error toast', {status : 'error'}
     })
   }
 
