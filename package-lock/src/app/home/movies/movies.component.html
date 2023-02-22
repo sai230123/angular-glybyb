@@ -1,0 +1,75 @@
+<div class="container mt-3">
+    <div id="cover-spin" *ngIf="showSpinner"></div>
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">{{isEditFlow? 'Edit' : 'Add'}} Movie</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <form  [formGroup]="movieForm">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">Movie Name</label>
+                    <input type="text" formControlName="title" class="form-control" id="firstName" placeholder="Movie Name">
+                </div>
+                <div class="mb-3">
+                    <label for="actor" class="form-label">Actor</label>
+                    <input type="text" formControlName="actor" class="form-control" id="actor" placeholder="Actor">
+                </div>
+                <div class="mb-3">
+                    <label for="Cost" class="form-label">Cost</label>
+                    <input type="text" formControlName="cost" class="form-control" id="Cost" placeholder="Cost">
+                </div>
+                <div class="mb-3">
+                    <label for="year" class="form-label">Year of Release</label>
+                    <input type="text" formControlName="year" class="form-control" id="year" placeholder="Year">
+                </div>
+                <div class="mb-3">
+                    <label for="formFileSm" class="form-label">Image</label>
+                    <input  formControlName="file" (change)="onFileChange($event)" class="form-control form-control-sm" id="formFileSm" type="file">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" [disabled]="!movieForm.valid"
+                (click)="saveMovie();">{{isEditFlow? 'Update' : 'Add'}}</button>
+        </div>
+    </ng-template>
+
+    <div class="d-flex flex-row-reverse bd-highlight">
+        <div class="p-2 bd-highlight"><button type="button" class="btn btn-primary" (click)="open(content)">Add
+                Movie</button></div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Movie ID</th>
+                        <th scope="col">Movie Name</th>
+                        <th scope="col">Cost</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Actor</th>
+                        <th scope="col" width="10%">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let actor of dataList">
+                        <th scope="row">{{actor?.id}}</th>
+                        <td>{{actor.title}}</td>
+                        <td>{{actor.cost}}</td>
+                        <td>{{actor.year}}</td>
+                        <td>{{actor.actor}}</td>
+                        <td>
+                            <div class="d-flex flex-row-reverse bd-highlight">
+                                <button type="button" (click)="deleteMovie(actor?.id)"
+                                    class="btn btn-sm btn-primary">Delete</button>
+                                <button type="button" class="btn btn-sm btn-success me-2"
+                                    (click)="open(content, actor)">Edit</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
